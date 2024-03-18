@@ -1,20 +1,21 @@
-/* eslint-disable import/prefer-default-export */
 import path from "path";
+import express from "express";
+import cors from "cors";
+import morgan from "morgan";
+import cookieParser from "cookie-parser";
 import { createServer } from "http";
 import { Server } from "socket.io";
+import responseTime from "response-time";
 import router from "./routes";
 import DBConnect from "./config/db";
 import connection from "./sockets";
-
-const express = require("express");
-const cors = require("cors");
-const morgan = require("morgan");
-const cookieParser = require("cookie-parser");
+import { startMetricsServer, restResponseTimeHistogram } from "./metrics/index";
 require("dotenv").config();
-
+// Initialize Express app
 const app = express();
 const httpServer = createServer(app);
 
+// Initialize Socket.IO server
 export const io = new Server(httpServer, {
     cors: {
         origin: [
@@ -26,9 +27,11 @@ export const io = new Server(httpServer, {
     },
 });
 
+// Define port
 const PORT = process.env.PORT || 5000;
 
-const corsOption = {
+// CORS options
+const corsOptions = {
     credentials: true,
     origin: [
         "http://localhost:3000",
@@ -36,23 +39,41 @@ const corsOption = {
     ],
 };
 
+// Set view engine and views directory
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
-app.use(cors(corsOption));
+
+// Middleware
+app.use(cors(corsOptions));
 app.use(express.json({ limit: "5mb" }));
 app.use(cookieParser());
 app.use(morgan("dev"));
 app.use(router);
+
+// Middleware for response time measurement
+app.use(responseTime((req, res, time) => {
+    if (req?.route?.path) {
+        restResponseTimeHistogram.observe({
+            method: req.method,
+            route: req.route.path,
+            status_code: res.statusCode
+        }, time * 1000);
+    }
+}));
+
+// Connect to database
 DBConnect();
 
+// Socket.IO connection handler
 io.on("connection", (socket) => connection(socket, io));
 
-// base
+// Base route
 app.get("/", (req, res) => {
     res.status(200).json({ msg: "Hello there" });
 });
 
-// listen
+// Start HTTP server
 httpServer.listen(PORT, () => {
-    console.log(`Server started on ${PORT}`);
+    console.log(`Server started on port ${PORT}`);
+    startMetricsServer();
 });

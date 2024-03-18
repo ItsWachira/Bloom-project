@@ -29,11 +29,14 @@ const Users = () => {
     };
     getData();
   }, []);
+  console.log(users);
 
   const handleDelete = (id) => {
     setIsOpen(true);
     setDeletionId(id);
   };
+
+  // : filter == 1 ? verifiedUsers : admins
 
   const onDelete = async (id) => {
     try {
@@ -76,19 +79,19 @@ const Users = () => {
               onChange={(e) => setFilter(e.target.value)}
             >
               <option value="0">Users</option>
-              <option value="1">Verfied</option>
+              {/* <option value="1">Verfied</option> */}
               <option value="2">Admins</option>
             </select>
           </section>
           <section className="flex p-4 text-sm font-bold border rounded-lg gap-x-4 border-accent border-opacity-20 bg-base-300">
             <p>Users : {users?.length}</p>
-            <p>Verfied: {verifiedUsers?.length}</p>
-            <p>Admins: {admins?.length}</p>
+            {/* <p>Verfied: {verifiedUsers?.length}</p> */}
+            {/* <p>Admins: {admins?.length}</p> */}
           </section>
         </div>
         <Table
           handleDelete={handleDelete}
-          data={filter == 0 ? users : filter == 1 ? verifiedUsers : admins}
+          data={filter == 0 ? users : null}
           loading={loading}
         />
       </div>

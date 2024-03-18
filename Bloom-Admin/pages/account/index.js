@@ -23,7 +23,7 @@ const Account = () => {
   return (
     <section className="relative p-4 text-gray-600 body-font lg:p-10">
       <Head>
-        <title>Dashboard - MentorMap</title>
+        <title>Dashboard - Bloom</title>
       </Head>
       <div className="w-full h-full">
         <Header />

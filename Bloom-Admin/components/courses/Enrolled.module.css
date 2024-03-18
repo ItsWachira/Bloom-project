@@ -1,0 +1,25 @@
+/* Enrolled.module.css */
+.table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .header {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .row:nth-child(even) {
+    background-color: #110404;
+  }
+  
+  .cell {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .container {
+    margin-top: 20px;
+  }
+  

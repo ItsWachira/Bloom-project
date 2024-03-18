@@ -1,73 +1,95 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import { getCourse, getUsers, getProjects } from "../../services/api";
+import toast from "react-hot-toast";
+import styles from "./Enrolled.module.css"; // Import CSS module
 
-export default function Enrolled({ students }) {
-  const data = [
-    {
-      name: "John Doe",
-      email: "johndoe@gmail.com",
-    },
-    {
-      name: "John Doe",
-      email: "johndoe@gmail.com",
-    },
-  ];
+export default function Enrolled() {
+  const router = useRouter();
+  const { id: courseId } = router.query;
 
-  const rows = data.map((i, j) => {
+  const [loading, setLoading] = useState(false);
+  const [enrolledStudents, setEnrolledStudents] = useState([]);
+  const [courseDetails, setCourseDetails] = useState(null);
+  const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    const fetchCourseDetails = async () => {
+      if (!courseId) return;
+
+      setLoading(true);
+      try {
+        const { data: courseData } = await getCourse(courseId);
+        const enrolledStudentIds = courseData.data.students || [];
+        const { data: allUsersData } = await getUsers();
+
+        const enrolledStudentsData = allUsersData.data.filter((user) =>
+          enrolledStudentIds.includes(user._id)
+        );
+        setEnrolledStudents(enrolledStudentsData);
+      } catch (error) {
+        console.error("Error fetching course details:", error);
+        toast.error("Failed to fetch course details");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    const fetchProjects = async () => {
+      try {
+        const { data } = await getProjects();
+        setProjects(data); // Set all projects
+      } catch (error) {
+        console.error("Error fetching projects:", error);
+        toast.error("Failed to fetch projects");
+      }
+    };
+
+    fetchCourseDetails();
+    fetchProjects();
+  }, [courseId]);
+
+  const renderEnrolledStudents = () => {
     return (
-      <tr key={j}>
-        <th>
-          <label>
-            <input type="checkbox" className="checkbox" />
-          </label>
-        </th>
-        <td>
-          <div className="flex items-center space-x-3">
-            <div className="avatar">
-              <div className="w-12 h-12 mask mask-squircle">
-                <img src="/avatar.svg" alt="Avatar Tailwind CSS Component" />
-              </div>
-            </div>
-            <div>
-              <div className="font-bold">{i?.name}</div>
-              <div className="text-sm opacity-50">{i?.email}</div>
-            </div>
-          </div>
-        </td>
-        <td>
-          Zemlak, Daniel and Leannon
-          <br />
-          <span className="badge badge-ghost badge-sm">
-            Desktop Support Technician
-          </span>
-        </td>
-        <td>Purple</td>
-        <th>
-          <button className="btn btn-ghost btn-xs">details</button>
-        </th>
-      </tr>
+      <table className={styles.table}>
+        <thead>
+          <tr>
+            <th className={styles.header}>Name</th>
+            <th className={styles.header}>Email</th>
+            <th className={styles.header}>Projects</th>
+          </tr>
+        </thead>
+        <tbody>
+          {enrolledStudents.map((student, index) => (
+            <tr key={index} className={styles.row}>
+              <td className={styles.cell}>{student.name}</td>
+              <td className={styles.cell}>{student.email}</td>
+              <td className={styles.cell}>
+                <ul>
+                  {filterProjects(student._id).map((project, index) => (
+                    <li key={index}>
+                      <a href={project.githubUrl}>{project.title}</a>
+                    </li>
+                  ))}
+                </ul>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     );
-  });
+  };
+
+  const filterProjects = (userId) => {
+    return projects.data.filter((project) => project.userId === userId);
+  };
 
   return (
-    <>
-      <div className="w-full overflow-x-auto">
-        <table className="table w-full">
-          <thead>
-            <tr>
-              <th>
-                <label>
-                  <input type="checkbox" className="checkbox" />
-                </label>
-              </th>
-              <th>Name</th>
-              <th>Job</th>
-              <th>Favorite Color</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>{rows}</tbody>
-        </table>
-      </div>
-    </>
+    <div>
+      {loading && <p>Loading...</p>}
+      {enrolledStudents.length > 0 && (
+        <div className={styles.container}>{renderEnrolledStudents()}</div>
+      )}
+    </div>
   );
 }

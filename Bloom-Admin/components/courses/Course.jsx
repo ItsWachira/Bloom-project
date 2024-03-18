@@ -100,13 +100,13 @@ export default function Course({ course, loading }) {
 
           <section className="pt-10">
             <h1 className="uppercase my-2 font-bold px-2">Enrolled Students</h1>
-            <Enrolled students={course?.students} />
+            <Enrolled  />
           </section>
 
-          <section className="pt-10">
+          {/* <section className="pt-10">
             <h1 className="uppercase my-2 font-bold px-2">Projects</h1>
-            <Enrolled students={course?.projects} />
-          </section>
+            <Enrolled  />
+          </section> */}
 
           <ConfirmAction
             title="Confirm Deletion"

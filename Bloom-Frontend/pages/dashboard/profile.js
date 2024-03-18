@@ -1,7 +1,7 @@
 import React from "react";
-import Tabs from "components/profile/Tabs;
+import Profile from "components/profile";
 import Sidebar from "components/dashboard/Sidebar";
-import { ProtectedRoute } from "utils/ProtectedRoute";
+
 
 export default function Profle() {
   return (

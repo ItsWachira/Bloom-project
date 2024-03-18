@@ -21,8 +21,8 @@ export default function Stats({ course }) {
             </svg>
           </div>
           <div className="stat-title">Respect</div>
-          <div className="stat-value text-primary">{course?.respect}</div>
-          <div className="stat-desc">Top 0% this month</div>
+          {/* <div className="stat-value text-primary">{course?.respect}</div> */}
+          <div className="stat-desc">Top 42% this month</div>
         </div>
 
         <div className="stat">
@@ -54,7 +54,7 @@ export default function Stats({ course }) {
               </div>
             </div>
           </div>
-          <div className="stat-value">{course?.respect}</div>
+          {/* <div className="stat-value">{course?.respect}</div> */}
           <div className="stat-title">{course?.channel}</div>
           <div className="stat-desc text-secondary">this month</div>
         </div>

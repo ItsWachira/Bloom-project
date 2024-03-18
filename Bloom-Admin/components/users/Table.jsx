@@ -26,14 +26,8 @@ export default function Table({ data, handleDelete, loading }) {
             </div>
           </div>
         </td>
-        {/* <td className="text-sm">
-          joined {formatDistance(new Date(i?.createdAt), Date.now())} ago joined{" "}
-          <br />
-          <p className="pt-2 text-opacity-80 text-base-content">
-            {format(new Date(i?.createdAt), "dd MMM yyyy")}
-          </p>
-        </td> */}
-        <td className="flex flex-col justify-center gap-y-4">
+        
+        {/* <td className="flex flex-col justify-center gap-y-4">
           {i?.verified ? (
             <p className="font-bold text-green-500">verified</p>
           ) : (
@@ -46,7 +40,7 @@ export default function Table({ data, handleDelete, loading }) {
           >
             {i?.role > 0 ? "admin" : "user"}
           </span>
-        </td>
+        </td> */}
         <th>
           <button
             onClick={() => handleDelete(i._id)}
@@ -71,8 +65,8 @@ export default function Table({ data, handleDelete, loading }) {
                 </label>
               </th>
               <th>Name</th>
-              <th>Role</th>
-              <th>Verification</th>
+              {/* <th>Role</th>
+              <th>Verification</th> */}
               <th></th>
             </tr>
           </thead>
