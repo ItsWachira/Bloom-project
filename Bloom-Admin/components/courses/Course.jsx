@@ -103,10 +103,7 @@ export default function Course({ course, loading }) {
             <Enrolled  />
           </section>
 
-          {/* <section className="pt-10">
-            <h1 className="uppercase my-2 font-bold px-2">Projects</h1>
-            <Enrolled  />
-          </section> */}
+    
 
           <ConfirmAction
             title="Confirm Deletion"

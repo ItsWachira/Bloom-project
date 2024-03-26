@@ -1,5 +1,5 @@
 import React from "react";
-import Account from "../../components/analytics";
+import Account from "../../components/account";
 
 const index = () => {
   return (

@@ -127,3 +127,102 @@ export default function Enrolled() {
     </div>
   );
 }
+
+// const generateReport = () => {
+  //   const currentDate = new Date().toLocaleDateString();
+
+  //   const printContent = `
+  //     <html>
+  //       <head>
+  //         <title>${courseName} Enrollment Report</title>
+  //         <style>
+  //           body {
+  //             font-family: Arial, sans-serif;
+  //             background-color: #f0f8ff;
+  //             color: #333;
+  //           }
+
+  //           .print-header {
+  //             text-align: center;
+  //             background-color: #fff;
+  //             padding: 20px;
+  //             border: 1px solid #ccc;
+  //             border-radius: 5px;
+  //             margin-bottom: 20px;
+  //           }
+
+  //           .print-vision {
+  //             font-style: italic;
+  //           }
+
+  //           .print-date {
+  //             text-align: right;
+  //             margin-bottom: 20px;
+  //           }
+
+  //           .print-data {
+  //             background-color: #fff;
+  //             padding: 20px;
+  //             border: 1px solid #ccc;
+  //             border-radius: 5px;
+  //           }
+
+  //           table {
+  //             width: 100%;
+  //             border-collapse: collapse;
+  //           }
+
+  //           th, td {
+  //             padding: 10px;
+  //             border: 1px solid #ccc;
+  //           }
+
+  //           th {
+  //             background-color: #e6f2ff;
+  //           }
+
+  //           tr:nth-child(even) {
+  //             background-color: #f2f2f2;
+  //           }
+  //         </style>
+  //       </head>
+  //       <body>
+  //         <div class="print-header">
+  //           <h1>Bloom Learning Platform Report</h1>
+  //           <h1>${courseName} Enrollment Report</h1>
+  //           <p class="print-vision">Vision: Learning to build your future</p>
+  //         </div>
+  //         <div class="print-date">
+  //           <p>Generated on: ${currentDate}</p>
+  //         </div>
+  //         <div class="print-data">
+  //           <table>
+  //             <thead>
+  //               <tr>
+  //                 <th>Name</th>
+  //                 <th>Email</th>
+  //               </tr>
+  //             </thead>
+  //             <tbody>
+  //               ${enrolledStudents
+  //                 .map(
+  //                   (student) => `
+  //                     <tr>
+  //                       <td>${student.name}</td>
+  //                       <td>${student.email}</td>
+  //                     </tr>
+  //                   `
+  //                 )
+  //                 .join("")}
+  //             </tbody>
+  //           </table>
+  //         </div>
+  //       </body>
+  //     </html>
+  //   `;
+
+  //   const printWindow = window.open("", "_blank");
+  //   printWindow.document.write(printContent);
+  //   printWindow.document.close();
+  //   printWindow.print();
+  // };

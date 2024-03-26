@@ -34,17 +34,26 @@ const Sidebar = () => {
           alt=""
           objectFit="contain"
         />
-        <h1 className="font-bold text-white">Bloom</h1>
+        <h1 className="font-bold text-white">Bloom- Admin Panel</h1>
       </div>
 
       <ul className="w-full p-3 mt-8 text-base-content menu rounded-box">
         <li className="menu-title">
           <span className="">Menu</span>
         </li>
+        
+        <li>
+          <Link href="/courses" passHref>
+            <a className={`flex justify-between ${path.includes('/courses') ? "font-bold bg-[#212121] border border-gray-700" : ""}`}>
+              Courses
+              <i className="fa-solid fa-boxes-stacked"></i>
+            </a>
+          </Link>
+        </li>
         <li>
           <Link href="/account" passHref>
             <a className={`flex justify-between ${path === '/account' ? "font-bold bg-[#212121] border border-gray-700" : ""}`}>
-              Home
+              Analytics
               <i className="fa-solid fa-house"></i>
             </a>
           </Link>
@@ -53,14 +62,6 @@ const Sidebar = () => {
           <Link href="/users" passHref>
             <a className={`flex justify-between ${path.includes('/users') ? "font-bold bg-[#212121] border border-gray-700" : ""}`}>
               Users
-              <i className="fa-solid fa-boxes-stacked"></i>
-            </a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/courses" passHref>
-            <a className={`flex justify-between ${path.includes('/courses') ? "font-bold bg-[#212121] border border-gray-700" : ""}`}>
-              Courses
               <i className="fa-solid fa-boxes-stacked"></i>
             </a>
           </Link>

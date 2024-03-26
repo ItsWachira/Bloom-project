@@ -52,9 +52,9 @@ export default function Submission() {
       return toast.error("course unavailable");
     }
 
-    if (!url) {
-      return toast.error("Please add a project thumbnail");
-    }
+    // if (!url) {
+    //   return toast.error("Please add a project thumbnail");
+    // }
 
     if (!data?.title) {
       return toast.error("Please add a project title");

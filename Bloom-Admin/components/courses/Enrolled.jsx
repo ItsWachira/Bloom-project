@@ -1,8 +1,11 @@
+
+
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { getCourse, getUsers, getProjects } from "../../services/api";
 import toast from "react-hot-toast";
 import styles from "./Enrolled.module.css"; 
+import { set } from "lodash";
 
 export default function Enrolled() {
   const router = useRouter();
@@ -10,8 +13,9 @@ export default function Enrolled() {
 
   const [loading, setLoading] = useState(false);
   const [enrolledStudents, setEnrolledStudents] = useState([]);
-  const [courseDetails, setCourseDetails] = useState(null);
+  const [courseName, setCourseName] = useState("");
   const [projects, setProjects] = useState([]);
+  const [url, setURL] = useState([]);
 
   useEffect(() => {
     const fetchCourseDetails = async () => {
@@ -20,6 +24,7 @@ export default function Enrolled() {
       setLoading(true);
       try {
         const { data: courseData } = await getCourse(courseId);
+        setCourseName(courseData.data.name);
         const enrolledStudentIds = courseData.data.students || [];
         const { data: allUsersData } = await getUsers();
 
@@ -35,19 +40,17 @@ export default function Enrolled() {
       }
     };
 
-    const fetchProjects = async () => {
-      try {
-        const { data } = await getProjects();
-        setProjects(data); // Set all projects
-      } catch (error) {
-        console.error("Error fetching projects:", error);
-        toast.error("Failed to fetch projects");
-      }
-    };
+  
 
     fetchCourseDetails();
-    fetchProjects();
+    
   }, [courseId]);
+
+  
+  
+ console.log(enrolledStudents.length, courseName );
+
+  
 
   const renderEnrolledStudents = () => {
     return (
@@ -56,7 +59,6 @@ export default function Enrolled() {
           <tr>
             <th className={styles.header}>Name</th>
             <th className={styles.header}>Email</th>
-            <th className={styles.header}>Projects</th>
           </tr>
         </thead>
         <tbody>
@@ -64,24 +66,12 @@ export default function Enrolled() {
             <tr key={index} className={styles.row}>
               <td className={styles.cell}>{student.name}</td>
               <td className={styles.cell}>{student.email}</td>
-              <td className={styles.cell}>
-                <ul>
-                  {filterProjects(student._id).map((project, index) => (
-                    <li key={index}>
-                      <a href={project.githubUrl}>{project.title}</a>
-                    </li>
-                  ))}
-                </ul>
-              </td>
+
             </tr>
           ))}
         </tbody>
       </table>
     );
-  };
-
-  const filterProjects = (userId) => {
-    return projects.data.filter((project) => project.userId === userId);
   };
 
   return (
@@ -90,6 +80,11 @@ export default function Enrolled() {
       {enrolledStudents.length > 0 && (
         <div className={styles.container}>{renderEnrolledStudents()}</div>
       )}
+
+      {/* <button onClick={generateReport} className="btn btn-primary">
+        Generate Report
+      </button> */}
     </div>
+    
   );
 }
