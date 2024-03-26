@@ -1,4 +1,4 @@
-import Link from "next/dist/client/link";
+import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { FaAngleDown } from "react-icons/fa";
 import { FiBook } from "react-icons/fi";
@@ -35,7 +35,7 @@ export default function Navbar() {
       <div className="flex items-center justify-between w-11/12 mx-auto lg:w-10/12 ">
         <div>
           <Link href="/">
-            <a className="flex items-center gap-2">
+            <div className="flex items-center gap-2">
               <img
                 alt="metrack-logo"
                 src="/logo.png"
@@ -44,16 +44,16 @@ export default function Navbar() {
               <h1 className="hidden font-bold tracking-tight uppercase cursor-pointer lg:block">
                 <span className="text-3xl text-blue-500">B</span>loom
               </h1>
-            </a>
+            </div>
           </Link>
         </div>
         {isAuth ? (
           <div className="flex items-center gap-4">
-            <Link href={`/${user?.username}`}>
-              <a className="text-xs font-bold border border-blue-300 btn btn-ghost hover:bg-blue-50 btn-sm">
+            {/* <Link href={`/${user?.username}`}>
+              <span className="text-xs font-bold border border-blue-300 btn btn-ghost hover:bg-blue-50 btn-sm">
                 Profile
-              </a>
-            </Link>
+              </span>
+            </Link> */}
             <Dropdown user={user} handleLogout={handleLogout} />
           </div>
         ) : (
@@ -78,10 +78,8 @@ function Dropdown({ user, handleLogout }) {
   const CustomLink = forwardRef((props, ref) => {
     let { href, children, ...rest } = props;
     return (
-      <Link href={href}>
-        <a ref={ref} {...rest}>
-          {children}
-        </a>
+      <Link href={href} ref={ref} {...rest}>
+        {children}
       </Link>
     );
   });
@@ -125,43 +123,43 @@ function Dropdown({ user, handleLogout }) {
               </div>
               <div>
                 <h2 className="text-lg font-bold">{user?.name}</h2>
-                <h2 className="text-sm font-semibold">@{user?.username}</h2>
+                {/* <h2 className="text-sm font-semibold">@{user?.username}</h2> */}
                 <h3 className="text-sm font-semibold">{user?.email}</h3>
               </div>
             </div>
             <div className="px-1 py-1 ">
               <Menu.Item>
                 <CustomLink href="/dashboard">
-                  <a className="flex items-center p-4 py-3 gap-x-4 hover:bg-blue-50 active:bg-blue-300 rounded-xl">
+                  <span className="flex items-center p-4 py-3 gap-x-4 hover:bg-blue-50 active:bg-blue-300 rounded-xl">
                     <MdOutlineDashboard className="text-base font-bold" />
                     Dashboard
-                  </a>
+                  </span>
                 </CustomLink>
               </Menu.Item>
               <Menu.Item>
                 <CustomLink href="/explore">
-                  <a className="flex items-center p-4 py-3 gap-x-4 hover:bg-blue-50 active:bg-blue-300 rounded-xl">
+                  <span className="flex items-center p-4 py-3 gap-x-4 hover:bg-blue-50 active:bg-blue-300 rounded-xl">
                     <FiBook className="text-base font-bold" />
                     Explore Courses
-                  </a>
+                  </span>
                 </CustomLink>
               </Menu.Item>
-              <Menu.Item>
-                <CustomLink href={`/${user?.username}`}>
-                  <a className="flex items-center p-4 py-3 gap-x-4 hover:bg-blue-50 active:bg-blue-300 rounded-xl">
+              {/* <Menu.Item>
+                <CustomLink href={`/${user?.name}`}>
+                  <span className="flex items-center p-4 py-3 gap-x-4 hover:bg-blue-50 active:bg-blue-300 rounded-xl">
                     <AiOutlineUser className="text-base font-bold" />
                     Profile
-                  </a>
+                  </span>
                 </CustomLink>
-              </Menu.Item>
+              </Menu.Item> */}
             </div>
             <div className="px-1 py-1 ">
               <Menu.Item>
                 <CustomLink href="/dashboard/settings">
-                  <a className="flex items-center p-4 py-3 gap-x-4 hover:bg-blue-50 active:bg-blue-300 rounded-xl">
+                  <span className="flex items-center p-4 py-3 gap-x-4 hover:bg-blue-50 active:bg-blue-300 rounded-xl">
                     <BiCog className="text-base font-bold" />
                     Settings
-                  </a>
+                  </span>
                 </CustomLink>
               </Menu.Item>
               <Menu.Item>

@@ -31,48 +31,23 @@ const COURSES = [
   },
   {
     id: 3,
-    name: "Vue.js",
-    logo: <FaVuejs className="z-30 text-6xl text-blue-400 sm:text-9xl" />,
-  },
-  {
-    id: 4,
-    name: "Angular",
-    logo: <SiAngular className="z-30 text-6xl text-blue-400 sm:text-9xl" />,
-  },
-  {
-    id: 5,
     name: "Node.js",
     logo: <FaNodeJs className="z-30 text-6xl text-blue-400 sm:text-9xl" />,
   },
   {
-    id: 6,
+    id: 4,
     name: "Python",
     logo: <FaPython className="z-30 text-6xl text-blue-400 sm:text-9xl" />,
   },
   {
-    id: 7,
-    name: "Django",
-    logo: <SiDjango className="z-30 text-6xl text-blue-400 sm:text-9xl" />,
-  },
-  {
-    id: 8,
+    id: 5,
     name: "Flutter",
     logo: <SiFlutter className="z-30 text-6xl text-blue-400 sm:text-9xl" />,
   },
   {
-    id: 9,
+    id: 6,
     name: "SQL",
     logo: <SiPostgresql className="z-30 text-6xl text-blue-400 sm:text-9xl" />,
-  },
-  {
-    id: 10,
-    name: "Docker",
-    logo: <FaDocker className="z-30 text-6xl text-blue-400 sm:text-9xl" />,
-  },
-  {
-    id: 11,
-    name: "MongoDB",
-    logo: <SiMongodb className="z-30 text-6xl text-blue-400 sm:text-9xl" />,
   },
 ];
 

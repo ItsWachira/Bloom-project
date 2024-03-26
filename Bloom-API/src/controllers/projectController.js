@@ -5,7 +5,7 @@ import projectService from "../services/project-service";
 class ProjectController {
   async addProject(req, res) {
     try {
-      const { title, courseId, description, url, githubUrl, webUrl, tags } =
+      const { title, courseId, description, githubUrl, webUrl, tags } =
         req.body;
       const {user} = req;
       const project = await projectService.create({
@@ -13,7 +13,6 @@ class ProjectController {
         userId: user._id,
         courseId,
         description,
-        thumbnail: url,
         githubUrl,
         webUrl,
         tags,

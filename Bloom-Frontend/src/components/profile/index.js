@@ -11,10 +11,17 @@ export default function Profile({ data, user }) {
   const router = useRouter()
   const { username } = router.query
 
-  const profileData = useSelector(state => state.auth.user)
+  console.log(username)
+
+  const profileData = useSelector(state => state.auth.username)
+
+  console.log(profileData)
 
   const [showEdit, setShowEdit] = useState(false);
-  const [userProfile, setUserProfile] = useState(data.profile)
+  const [userProfile, setUserProfile] = useState(data.profileData)
+
+  console.log(userProfile)
+
 
 
 

@@ -36,49 +36,24 @@ const COURSES = [
   },
   {
     id: 3,
-    name: "Vue",
-    logo: <FaVuejs className="text-xl" />,
-  },
-  {
-    id: 4,
-    name: "Angular",
-    logo: <SiAngular className="text-xl" />,
-  },
-  {
-    id: 5,
     name: "Node",
     logo: <FaNodeJs className="text-xl" />,
   },
   {
-    id: 6,
+    id: 4,
     name: "Python",
     logo: <FaPython className="text-xl" />,
   },
   {
-    id: 7,
-    name: "Django",
-    logo: <SiDjango className="text-xl" />,
-  },
-  {
-    id: 8,
+    id: 5,
     name: "Flutter",
     logo: <SiFlutter className="text-xl" />,
   },
   {
-    id: 9,
+    id: 6,
     name: "SQL",
     logo: <SiPostgresql className="text-xl" />,
-  },
-  {
-    id: 10,
-    name: "Docker",
-    logo: <FaDocker className="text-xl" />,
-  },
-  {
-    id: 11,
-    name: "MongoDB",
-    logo: <SiMongodb className="text-xl" />,
-  },
+  }
 ];
 
 const Explore = () => {

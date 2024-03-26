@@ -89,7 +89,7 @@ export default function Sidebar() {
               </a>
             </Link>
           </li>
-          <li className="">
+          {/* <li className="">
             <Link href="/dashboard/profile">
               <a
                 className={`relative flex items-center w-full p-3 text-sm rounded-lg cursor-pointer gap-x-2  ${
@@ -102,7 +102,7 @@ export default function Sidebar() {
                 Profile
               </a>
             </Link>
-          </li>
+          </li> */}
           <li className="">
             <button
               onClick={handleLogout}
@@ -143,14 +143,14 @@ export default function Sidebar() {
               </a>
             </Link>
           </li>
-          <li className="">
+          {/* <li className="">
             <Link href="/profile">
               <a className="relative flex flex-col items-center justify-center w-full p-3 text-sm rounded-lg cursor-pointer gap-x-2 hover:bg-blue-300">
                 <AiOutlineUser className="text-2xl font-bold" />
                 Profile
               </a>
             </Link>
-          </li>
+          </li> */}
         </ul>
       </section>
     </>

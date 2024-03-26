@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { getCourse, getUsers, getProjects } from "../../services/api";
 import toast from "react-hot-toast";
-import styles from "./Enrolled.module.css"; // Import CSS module
+import styles from "./Enrolled.module.css"; 
 
 export default function Enrolled() {
   const router = useRouter();

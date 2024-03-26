@@ -29,7 +29,7 @@ const Users = () => {
     };
     getData();
   }, []);
-  console.log(users);
+  
 
   const handleDelete = (id) => {
     setIsOpen(true);

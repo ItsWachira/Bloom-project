@@ -20,32 +20,32 @@ export default function Submission() {
   const [media, setMedia] = useState();
   const [imageLoading, setImageLoading] = useState(false);
 
-  const uploadImage = async () => {
-    if (!image) {
-      return toast.error("Please add a image");
-    }
-    setImageLoading(true);
+  // const uploadImage = async () => {
+  //   if (!image) {
+  //     return toast.error("Please add a image");
+  //   }
+  //   setImageLoading(true);
 
-    try {
-      const uploadedPic = await uploadPic(media);
-      setUrl(uploadedPic);
-      toast.success("Image uploaded. Continue editing!");
-      setImageLoading(false);
-    } catch (err) {
-      setImageLoading(false);
-      toast.error("Error in Upload");
-    }
-  };
+  //   try {
+  //     const uploadedPic = await uploadPic(media);
+  //     setUrl(uploadedPic);
+  //     toast.success("Image uploaded. Continue editing!");
+  //     setImageLoading(false);
+  //   } catch (err) {
+  //     setImageLoading(false);
+  //     toast.error("Error in Upload");
+  //   }
+  // };
 
-  const captureImage = (e) => {
-    const file = e.target.files[0];
-    setMedia(file);
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = function () {
-      setImage(reader.result);
-    };
-  };
+  // const captureImage = (e) => {
+  //   const file = e.target.files[0];
+  //   setMedia(file);
+  //   const reader = new FileReader();
+  //   reader.readAsDataURL(file);
+  //   reader.onloadend = function () {
+  //     setImage(reader.result);
+  //   };
+  // };
 
   const onSubmit = async (data) => {
     if (!courseId) {
@@ -65,7 +65,6 @@ export default function Submission() {
         ...data,
         description,
         tags,
-        thumbnail: url,
         courseId,
         url,
       });
@@ -102,7 +101,7 @@ export default function Submission() {
         </div>
         <section id="about" className="space-y-6">
           <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
-            <div className="space-y-2">
+            {/* <div className="space-y-2">
               <h2 className="text-xs font-bold text-blue-500 uppercase">
                 Thumbnail
               </h2>
@@ -125,7 +124,7 @@ export default function Submission() {
               >
                 Upload
               </div>
-            </div>
+            </div> */}
 
             <div className="space-y-2">
               <h2 className="text-xs font-bold text-blue-500 uppercase">

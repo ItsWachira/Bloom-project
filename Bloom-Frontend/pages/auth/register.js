@@ -51,19 +51,6 @@ const Register = () => {
         </p>
 
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="form-control w-full">
-            <label className="label">
-              <span className="label-text text-text-white font-light">Username <span className="text-red-500">*</span></span>
-            </label>
-            <input type="text"
-              className={`w-full input input-bordered ${errors.username ? "input-error" : ""
-                }`}
-              placeholder="Type here"
-              {...register("username", {
-                required: true,
-              })}
-              onChange={(e) => setUsername(e.target.value)} value={username} required />
-          </div>
 
 
           <div className="w-full form-control">

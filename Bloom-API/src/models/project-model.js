@@ -22,9 +22,6 @@ const ProjectSchema = new Schema(
       required: true,
       trim: true,
     },
-    thumbnail: {
-      type: String,
-    },
     githubUrl: String,
     webUrl: String,
     tags: [String],

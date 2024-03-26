@@ -5,11 +5,9 @@ import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import { createServer } from "http";
 import { Server } from "socket.io";
-import responseTime from "response-time";
 import router from "./routes";
 import DBConnect from "./config/db";
 import connection from "./sockets";
-import { startMetricsServer, restResponseTimeHistogram } from "./metrics/index";
 require("dotenv").config();
 // Initialize Express app
 const app = express();
@@ -50,16 +48,6 @@ app.use(cookieParser());
 app.use(morgan("dev"));
 app.use(router);
 
-// Middleware for response time measurement
-app.use(responseTime((req, res, time) => {
-    if (req?.route?.path) {
-        restResponseTimeHistogram.observe({
-            method: req.method,
-            route: req.route.path,
-            status_code: res.statusCode
-        }, time * 1000);
-    }
-}));
 
 // Connect to database
 DBConnect();
@@ -75,5 +63,4 @@ app.get("/", (req, res) => {
 // Start HTTP server
 httpServer.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);
-    startMetricsServer();
 });

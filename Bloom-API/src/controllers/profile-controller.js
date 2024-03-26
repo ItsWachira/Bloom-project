@@ -43,11 +43,9 @@ class ProfileController {
 
     async getProfile(req, res) {
         try {
-            const { id } = req.params;
-            console.log({ id });
-            const profile = await profileService.findOne({
-                user: mongoose.Types.ObjectId(id),
-            });
+            const { id } = req.params; // Extracting user id from URL params
+           console.log(id); // Logging user id
+            const profile = await profileService.findOne({ _id: id });
             let projects = [];
             let courses = [];
             try {
